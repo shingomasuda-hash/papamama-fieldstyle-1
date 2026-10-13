@@ -1,5 +1,11 @@
 # LP1 QA report
 
+> **High-DPI (@2x) enabled.** Every image now has a Real-ESRGAN x2plus @2x version chosen by `srcset`.
+> - **DPR 1:** loads 0 @2x files (34/34 originals), so the pixel results below are unchanged.
+> - **DPR 3** (390px viewport): loads 34/34 @2x files.
+> - **Tile seams:** tiles are feather-blended. In the body @2x, row-to-row change at tile edges averages 2.75 vs 2.99 mid-tile (the earlier hard-cut version measured 3.88 vs 3.37, with visibly broken button shadows), so no seams.
+> - **Visual check:** at 3× (FV lettering, CTA buttons, staff card, store-info text) the text is sharper with no glyph distortion. Before/after: `qa/preview/hidpi-before-after-3x.png` (local).
+
 > **2026-10-13 FV swap.** FV1/FV2 were replaced with the files now in Drive `LP1/`: `FIELDSTYLE_FV_LP2-1.jpg` (590×1335) and `7 1FIELDSTYLE_FV_LP2-2.jpg` (573×1298). They're byte-for-byte copies. QA was re-run and all functional checks pass. At 509px the body is still pixel-identical to `lp1-body.png`, and FV1 vs FV2 bodies are identical. The new FV1 scales to a fractional height (1151.72px at 509), so its PIL comparison shows edge-only resampling noise (mean ≈3.5), with no structural difference. Both new source files carry a 1px light line: FV1 on its right column, FV2 on its bottom row. That's in the originals and kept as-is.
 
 Environment: `next build` + `next start` (production), headless Chromium 1194 (Playwright), DPR 1.

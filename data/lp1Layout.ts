@@ -11,8 +11,8 @@ export const BODY_H = 13136;
  */
 export const IMG_SIZES = '(min-width: 509px) 509px, 100vw';
 
-/** Serve the @2x files via srcset. Off until the @2x assets are generated and committed. */
-export const HIDPI = false;
+/** Serve the @2x files to high-density screens via srcset. */
+export const HIDPI = true;
 
 /** srcset for a 1x/@2x pair, or undefined while HIDPI is off (1x only). */
 export const srcSet2x = (src: string, src2x: string, width: number) =>
