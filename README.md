@@ -49,6 +49,15 @@ The brief referred to `asset-manifest.json`, `cta-coordinate-hints.json`, `lp1-b
 
 Source observations, reproduced as-is: card 3 (後藤 朱里) has an empty 一言 row, and card 6 (松浦 加奈) has no 特技 row.
 
+## Google Tag Manager
+
+`app/layout.tsx` embeds container `GTM-KPB2C8K` using the supplied snippet unchanged:
+
+- the `<script>` sits inside `<head>`;
+- the `<noscript><iframe>` is the first element at the start of `<body>`.
+
+It applies to every route (`/`, `/lp1`, `?fv=2`). React 19 always puts Next.js's own resource tags first in `<head>` (charset, viewport, CSS, async chunks, title/meta). The GTM script therefore follows them, which is the highest position available for an inline script in the App Router. A Next.js internal `<div hidden>` also renders at the start of `<body>`, ahead of the `<noscript>`.
+
 ## CTA hotspots (`data/lp1Layout.ts`)
 
 The rectangles below are in `lp1-body.png` pixels (full-design y − 1118) and include each button's drop shadow. They were detected from the button colours and checked visually.
