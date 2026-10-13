@@ -33,7 +33,7 @@ def load(name, size):
 
 
 # FV
-for n, size in (("1", (594, 1544)), ("2", (596, 1554))):
+for n, size in (("1", (590, 1335)), ("2", (573, 1298))):
     load(f"lp1-fv-{n}@2x.png", (size[0] * 2, size[1] * 2)).convert("RGB").save(D / f"lp1-fv-{n}@2x.jpg", **JPEG)
 
 # Body tiles (1x lossless crops of lp1-body.png + @2x JPEG)

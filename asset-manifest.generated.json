@@ -3,17 +3,17 @@
   "files": [
     {
       "path": "/design/lp1-fv-1.jpg",
-      "width": 594,
-      "height": 1544,
-      "bytes": 1092025,
-      "sha256": "38f1f6714027bb37984df930275ac88aee78fe5eb777745daad7ea1e7261e60b"
+      "width": 590,
+      "height": 1335,
+      "bytes": 765938,
+      "sha256": "37e46a2329b57a1369a61475e8c0709e3fcb49c08394c326e6941e8e92a28813"
     },
     {
       "path": "/design/lp1-fv-2.jpg",
-      "width": 596,
-      "height": 1554,
-      "bytes": 1136494,
-      "sha256": "1a45879f71179dcd70afe532dfd82b0b9307b211d228a6f78339c917aca0610b"
+      "width": 573,
+      "height": 1298,
+      "bytes": 747314,
+      "sha256": "ff84c122e9d2ac2b2b492f8c27b769b5d68a988aa974efff3200c907b4802ebb"
     },
     {
       "path": "/design/lp1-body.png",

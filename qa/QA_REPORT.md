@@ -1,5 +1,7 @@
 # LP1 QA report
 
+> **2026-10-13 FV swap.** FV1/FV2 were replaced with the files now in Drive `LP1/`: `FIELDSTYLE_FV_LP2-1.jpg` (590×1335) and `7 1FIELDSTYLE_FV_LP2-2.jpg` (573×1298). They're byte-for-byte copies. QA was re-run and all functional checks pass. At 509px the body is still pixel-identical to `lp1-body.png`, and FV1 vs FV2 bodies are identical. The new FV1 scales to a fractional height (1151.72px at 509), so its PIL comparison shows edge-only resampling noise (mean ≈3.5), with no structural difference. Both new source files carry a 1px light line: FV1 on its right column, FV2 on its bottom row. That's in the originals and kept as-is.
+
 Environment: `next build` + `next start` (production), headless Chromium 1194 (Playwright), DPR 1.
 Reproduce with `node scripts/verify.mjs && python3 -I scripts/compare.py`. Outputs go to `qa/screenshots/` (not committed).
 

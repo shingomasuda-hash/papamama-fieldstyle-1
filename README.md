@@ -32,8 +32,8 @@ Every asset comes from the client's Google Drive folder `FIELDSTYLE` (`LP1/` and
 
 | File | Source | Processing |
 | --- | --- | --- |
-| `lp1-fv-1.jpg` (594×1544) | `LP1/FIELDSTYLE_FV_LP1-1.jpg` | byte-for-byte copy |
-| `lp1-fv-2.jpg` (596×1554) | `LP1/FIELDSTYLE_FV_LP1-2.jpg` | byte-for-byte copy |
+| `lp1-fv-1.jpg` (590×1335) | `LP1/FIELDSTYLE_FV_LP2-1.jpg` (placed in the LP1 folder on 2026-10-13) | byte-for-byte copy |
+| `lp1-fv-2.jpg` (573×1298) | `LP1/7 1FIELDSTYLE_FV_LP2-2.jpg` (idem) | byte-for-byte copy |
 | `lp1-body.png` (509×13136) | `LP1/FIELDSTYLE_LP1_2026.jpg` rows y ≥ 1118 | lossless crop (decoded pixels → PNG) |
 | `staff-all.png` (3830×816) | `FIELDSTYLE_LP1-LP2共通` | byte-for-byte copy |
 | `staff/staff-01..06.png` (586×816) | cut from `staff-all.png` at x = 0, 644, 1294, 1944, 2594, 3244 | lossless crop |
@@ -51,11 +51,11 @@ Source observations, reproduced as-is: card 3 (後藤 朱里) has an empty 一�
 
 ## High-density screens (@2x)
 
-The supplied designs are only 509–596px wide, so phones (DPR 2–3) had to stretch them 2–3× and the page looked soft. Every image now has two versions, chosen by `srcset`:
+The supplied designs are only 509–590px wide, so phones (DPR 2–3) had to stretch them 2–3× and the page looked soft. Every image now has two versions, chosen by `srcset`:
 
 | | 1x (DPR 1 desktops) | @2x (phones, retina) |
 | --- | --- | --- |
-| FV | `lp1-fv-{1,2}.jpg` (original) | `lp1-fv-{1,2}@2x.jpg` 1188/1192px |
+| FV | `lp1-fv-{1,2}.jpg` (original) | `lp1-fv-{1,2}@2x.jpg` 1180/1146px |
 | Body | `body/lp1-body-01..13.png` (lossless 1024-row tiles of `lp1-body.png`) | `body/lp1-body-01..13@2x.jpg` 1018×2048 |
 | Staff cards | `staff/staff-0N.png` (original) | `staff/staff-0N@2x.webp` 1172×1632 |
 | STAFF stage layers | `staff-stage-{bg,overlay}.png` | `staff-stage-{bg,overlay}@2x.png` |

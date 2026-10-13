@@ -19,8 +19,8 @@ export const srcSet2x = (src: string, src2x: string, width: number) =>
   HIDPI ? `${src} ${width}w, ${src2x} ${width * 2}w` : undefined;
 
 export const FV_IMAGES = {
-  '1': { src: '/design/lp1-fv-1.jpg', src2x: '/design/lp1-fv-1@2x.jpg', width: 594, height: 1544 },
-  '2': { src: '/design/lp1-fv-2.jpg', src2x: '/design/lp1-fv-2@2x.jpg', width: 596, height: 1554 },
+  '1': { src: '/design/lp1-fv-1.jpg', src2x: '/design/lp1-fv-1@2x.jpg', width: 590, height: 1335 },
+  '2': { src: '/design/lp1-fv-2.jpg', src2x: '/design/lp1-fv-2@2x.jpg', width: 573, height: 1298 },
 } as const;
 
 /** lp1-body.png split into 1024-row tiles (12 × 1024 + 848 = 13136). */

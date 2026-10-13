@@ -3,7 +3,7 @@ import styles from './Lp1Page.module.css';
 import { BODY_H, BODY_TILES, BODY_W, FV_IMAGES, HOTSPOTS, IMG_SIZES, STAFF_STAGE, pct, srcSet2x, type FvKey, type Hotspot } from '@/data/lp1Layout';
 
 const FV_ALT =
-  "PAPAMAMA CAR'S あなただけの一台で、遊びをもっと自由に。日本最大級の遊びの祭典 FIELDSTYLE OUTDOOR & LIFESTYLE FESTA 出店決定！ 2026年11月14日（土）〜11月15日（日） 愛知県国際展示場";
+  "PAPAMAMA CAR'S あなただけの一台で、遊びは、もっと自由になる。日本最大級の遊びの祭典 FIELDSTYLE OUTDOOR & LIFESTYLE FESTA 出店決定！ 2026年11月14日（土）〜11月15日（日）";
 
 function HotspotLink({ spot }: { spot: Hotspot }) {
   const [x, y, w, h] = spot.rect;
