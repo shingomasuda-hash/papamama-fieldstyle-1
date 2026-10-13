@@ -1,0 +1,96 @@
+{
+  "generatedBy": "scripts/prepare_assets.py",
+  "files": [
+    {
+      "path": "/design/lp1-fv-1.jpg",
+      "width": 594,
+      "height": 1544,
+      "bytes": 1092025,
+      "sha256": "38f1f6714027bb37984df930275ac88aee78fe5eb777745daad7ea1e7261e60b"
+    },
+    {
+      "path": "/design/lp1-fv-2.jpg",
+      "width": 596,
+      "height": 1554,
+      "bytes": 1136494,
+      "sha256": "1a45879f71179dcd70afe532dfd82b0b9307b211d228a6f78339c917aca0610b"
+    },
+    {
+      "path": "/design/lp1-body.png",
+      "width": 509,
+      "height": 13136,
+      "bytes": 3997103,
+      "sha256": "2bc3631b3ae474c3140d44b28cfae2ef6c30621b73c96fb174f139bd9dde3943"
+    },
+    {
+      "path": "/design/staff-all.png",
+      "width": 3830,
+      "height": 816,
+      "bytes": 989301,
+      "sha256": "cc67e35b1d1fab994b0d65cd1605c080bb0e386442958c6a81eb97db094dc58e"
+    },
+    {
+      "path": "/design/staff/staff-01.png",
+      "width": 586,
+      "height": 816,
+      "bytes": 196428,
+      "sha256": "8b77f720faaf799188d8b4b7bbd5ec547cdf2d613a48ec6becd0c1425d377d96"
+    },
+    {
+      "path": "/design/staff/staff-02.png",
+      "width": 586,
+      "height": 816,
+      "bytes": 131494,
+      "sha256": "546201a290be12472e7d7f6f0685aa90b8d191a8b2fa8587422fe068a9e40553"
+    },
+    {
+      "path": "/design/staff/staff-03.png",
+      "width": 586,
+      "height": 816,
+      "bytes": 165940,
+      "sha256": "d16b9f269386f52f5b7da17404e3128e2aba82f8bd62dd328fe6d578e4d7a577"
+    },
+    {
+      "path": "/design/staff/staff-04.png",
+      "width": 586,
+      "height": 816,
+      "bytes": 179187,
+      "sha256": "7ecba6e4bf5af868500a8ae96fedde25be35f1beb23b736ff13691b9ef695a97"
+    },
+    {
+      "path": "/design/staff/staff-05.png",
+      "width": 586,
+      "height": 816,
+      "bytes": 121090,
+      "sha256": "f4873762f2be4306bdb64e371c9396c9985f6213442708a5fc4fe7698048ba37"
+    },
+    {
+      "path": "/design/staff/staff-06.png",
+      "width": 586,
+      "height": 816,
+      "bytes": 187791,
+      "sha256": "ef0c800f12c2c00b83d6fa922cc800ed3b02a11337c0fed9dd09919ca93be1e7"
+    },
+    {
+      "path": "/design/staff-stage-bg.png",
+      "width": 509,
+      "height": 660,
+      "bytes": 21509,
+      "sha256": "a33787386fb6990583e85296245091f748c7af30064cc14d1fdc27b011a5d0e4"
+    },
+    {
+      "path": "/design/staff-stage-overlay.png",
+      "width": 509,
+      "height": 660,
+      "bytes": 14548,
+      "sha256": "457a22882ed6cd19d9594e34a045343f125384cced068123e126ee07eb60b77f"
+    },
+    {
+      "path": "reference/lp1-full.jpg",
+      "width": 509,
+      "height": 14254,
+      "bytes": 4781875,
+      "sha256": "079ff1081a0dad5a817a1662a09b587c1cb8d331ff6287aff77fe68d88f7b231"
+    }
+  ]
+}

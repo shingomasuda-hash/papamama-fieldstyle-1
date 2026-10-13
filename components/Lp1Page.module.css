@@ -1,0 +1,32 @@
+.page {
+  width: 100%;
+  max-width: 509px;
+  margin: 0 auto;
+  overflow-x: clip;
+}
+
+.fv,
+.bodyImg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.body {
+  position: relative;
+  /* Enables cqw units: 1 design px = 100cqw / 509 for the STAFF slider. */
+  container-type: inline-size;
+}
+
+.hotspot {
+  position: absolute;
+  display: block;
+  z-index: 5;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hotspot:focus-visible {
+  outline: 3px solid #0b57d0;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
