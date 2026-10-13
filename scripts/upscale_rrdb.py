@@ -120,12 +120,17 @@ class RRDBNet:
         return self.c("conv_last", lrelu(self.c("conv_hr", feat)))
 
 
-def upscale(net, rgb, tile=96, pad=10):
-    """rgb: (H, W, 3) uint8 -> (sH, sW, 3) uint8, tiled like Real-ESRGAN's tile mode."""
+def upscale(net, rgb, tile=160, pad=24):
+    """rgb: (H, W, 3) uint8 -> (sH, sW, 3) uint8.
+
+    Tiles overlap by `pad` px of context on every side and are feather-blended
+    (linear ramps across the overlap), so flat areas show no seams at tile edges.
+    """
     s = net.scale
     H, W, _ = rgb.shape
     x = rgb.astype(np.float32) / 255
-    out = np.zeros((H * s, W * s, 3), np.float32)
+    acc = np.zeros((H * s, W * s, 3), np.float32)
+    wsum = np.zeros((H * s, W * s, 1), np.float32)
     tiles = [(y, xx) for y in range(0, H, tile) for xx in range(0, W, tile)]
     t0 = time.time()
     for n, (y, xx) in enumerate(tiles):
@@ -135,12 +140,27 @@ def upscale(net, rgb, tile=96, pad=10):
         ph, pw = patch.shape[0] % 2, patch.shape[1] % 2
         if net.unshuffle and (ph or pw):  # pixel-unshuffle needs even sizes (reflect pad like Real-ESRGAN)
             patch = np.pad(patch, ((0, ph), (0, pw), (0, 0)), mode="reflect")
-        res = net(patch)
-        ty1, tx1 = min(H, y + tile), min(W, xx + tile)
-        out[y * s:ty1 * s, xx * s:tx1 * s] = res[(y - y0) * s:(ty1 - y0) * s, (xx - x0) * s:(tx1 - x0) * s]
-        if n % 20 == 0:
+        res = net(patch)[: (y1 - y0) * s, : (x1 - x0) * s]
+
+        # Weight: 1 inside, ramping down to ~0 over `pad` px towards edges that touch a neighbour tile.
+        def ramp(n_px, lo_open, hi_open):
+            w = np.ones(n_px, np.float32)
+            r = pad * s
+            if lo_open:
+                w[:r] = np.minimum(w[:r], (np.arange(r) + 0.5) / r)
+            if hi_open:
+                w[-r:] = np.minimum(w[-r:], ((np.arange(r) + 0.5) / r)[::-1])
+            return w
+
+        wy = ramp(res.shape[0], y0 > 0, y1 < H)
+        wx = ramp(res.shape[1], x0 > 0, x1 < W)
+        w = (wy[:, None] * wx[None, :])[..., None]
+        acc[y0 * s:y1 * s, x0 * s:x1 * s] += res * w
+        wsum[y0 * s:y1 * s, x0 * s:x1 * s] += w
+        if n % 10 == 0:
             el = time.time() - t0
             print(f"  tile {n + 1}/{len(tiles)}  {el:.0f}s  eta {el / (n + 1) * (len(tiles) - n - 1):.0f}s", flush=True)
+    out = acc / np.maximum(wsum, 1e-6)
     return (np.clip(out, 0, 1) * 255).round().astype(np.uint8)
 
 
