@@ -4,10 +4,35 @@ import { CONSULTATION_URL, INSTAGRAM_URL, PAINT_URL } from './links';
 export const BODY_W = 509;
 export const BODY_H = 13136;
 
+/**
+ * Every image has a 1x file (original design pixels) and an @2x file (Real-ESRGAN
+ * x2plus upscale, see scripts/upscale_rrdb.py). srcset lets high-density screens
+ * take @2x; DPR-1 screens keep the original pixels.
+ */
+export const IMG_SIZES = '(min-width: 509px) 509px, 100vw';
+
+/** Serve the @2x files via srcset. Off until the @2x assets are generated and committed. */
+export const HIDPI = false;
+
+/** srcset for a 1x/@2x pair, or undefined while HIDPI is off (1x only). */
+export const srcSet2x = (src: string, src2x: string, width: number) =>
+  HIDPI ? `${src} ${width}w, ${src2x} ${width * 2}w` : undefined;
+
 export const FV_IMAGES = {
-  '1': { src: '/design/lp1-fv-1.jpg', width: 594, height: 1544 },
-  '2': { src: '/design/lp1-fv-2.jpg', width: 596, height: 1554 },
+  '1': { src: '/design/lp1-fv-1.jpg', src2x: '/design/lp1-fv-1@2x.jpg', width: 594, height: 1544 },
+  '2': { src: '/design/lp1-fv-2.jpg', src2x: '/design/lp1-fv-2@2x.jpg', width: 596, height: 1554 },
 } as const;
+
+/** lp1-body.png split into 1024-row tiles (12 × 1024 + 848 = 13136). */
+const TILE_H = 1024;
+export const BODY_TILES = Array.from({ length: Math.ceil(13136 / TILE_H) }, (_, i) => {
+  const n = String(i + 1).padStart(2, '0');
+  return {
+    src: `/design/body/lp1-body-${n}.png`,
+    src2x: `/design/body/lp1-body-${n}@2x.jpg`,
+    height: Math.min(TILE_H, 13136 - i * TILE_H),
+  };
+});
 export type FvKey = keyof typeof FV_IMAGES;
 
 export function resolveFv(value: string | string[] | undefined): FvKey {

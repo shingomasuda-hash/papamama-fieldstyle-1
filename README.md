@@ -49,6 +49,31 @@ The brief referred to `asset-manifest.json`, `cta-coordinate-hints.json`, `lp1-b
 
 Source observations, reproduced as-is: card 3 (後藤 朱里) has an empty 一言 row, and card 6 (松浦 加奈) has no 特技 row.
 
+## High-density screens (@2x)
+
+The supplied designs are only 509–596px wide, so phones (DPR 2–3) had to stretch them 2–3× and the page looked soft. Every image now has two versions, chosen by `srcset`:
+
+| | 1x (DPR 1 desktops) | @2x (phones, retina) |
+| --- | --- | --- |
+| FV | `lp1-fv-{1,2}.jpg` (original) | `lp1-fv-{1,2}@2x.jpg` 1188/1192px |
+| Body | `body/lp1-body-01..13.png` (lossless 1024-row tiles of `lp1-body.png`) | `body/lp1-body-01..13@2x.jpg` 1018×2048 |
+| Staff cards | `staff/staff-0N.png` (original) | `staff/staff-0N@2x.webp` 1172×1632 |
+| STAFF stage layers | `staff-stage-{bg,overlay}.png` | `staff-stage-{bg,overlay}@2x.png` |
+
+- **How @2x is made.** Real-ESRGAN **x2plus** (BSD-3-Clause, by xinntao) via `scripts/upscale_rrdb.py`, a torch-free numpy implementation; then `scripts/build_hidpi.py`. It's a super-resolution model: it sharpens the existing text and photo edges. Nothing is redrawn, and layout, colours and wording are unchanged. Small Japanese text was checked visually after upscaling. Staff cards get their transparent pixels colour-filled (alpha bleeding) before upscaling, to avoid dark halos.
+- **Why tiles.** The body is split into tiles because a single 1018×26272 (27MP) image risks being downsampled or not rendering on iOS Safari. Tiles below the first two load lazily.
+- **Encoding.** @2x photos/body use JPEG q90 with 4:4:4 chroma, so orange/green text on coloured backgrounds stays crisp.
+- **When real high-res exports arrive.** If 2× (1018px) or 3× exports become available from the design tool, drop them in as the `@2x` files (same names/sizes) and they'll replace the AI upscale. That gives the best result.
+
+Regenerate:
+
+```bash
+# weights: https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.1/RealESRGAN_x2plus.pth
+python3 -I scripts/upscale_rrdb.py RealESRGAN_x2plus.pth public/design/lp1-body.png up/lp1-body@2x.png
+# … same for lp1-fv-1.jpg, lp1-fv-2.jpg and the 6 staff cards (alpha-bled) …
+python3 -I scripts/build_hidpi.py up/
+```
+
 ## Google Tag Manager
 
 `app/layout.tsx` embeds container `GTM-KPB2C8K` using the supplied snippet unchanged:

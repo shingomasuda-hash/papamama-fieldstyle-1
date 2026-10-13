@@ -4,6 +4,8 @@ export type StaffMember = {
   kana: string;
   /** Card artwork (586×816 transparent PNG, original pixels). */
   image: string;
+  /** @2x upscale (1172×1632 WebP) for high-density screens. */
+  image2x: string;
   /** Text transcribed from the card artwork for screen readers. */
   description: string;
 };
@@ -16,6 +18,7 @@ export const STAFF: readonly StaffMember[] = [
     name: '森行 啓太',
     kana: 'モリユキ ケイタ',
     image: '/design/staff/staff-01.png',
+    image2x: '/design/staff/staff-01@2x.webp',
     description: '趣味：キャンプ、サップ、サッカー、スノボー、ダイビング。特技：お客様を笑顔にできる！ 一言：お客様にとって最高の１台をご提案します！',
   },
   {
@@ -23,6 +26,7 @@ export const STAFF: readonly StaffMember[] = [
     name: '飯沼 蒼太郎',
     kana: 'イイヌマ ソウタロウ',
     image: '/design/staff/staff-02.png',
+    image2x: '/design/staff/staff-02@2x.webp',
     description: '趣味：アウトドア、旅、サッカー。特技：暴飲暴食。一言：ベストアンサーを探していきましょう！',
   },
   {
@@ -30,6 +34,7 @@ export const STAFF: readonly StaffMember[] = [
     name: '後藤 朱里',
     kana: 'ゴトウ アカリ',
     image: '/design/staff/staff-03.png',
+    image2x: '/design/staff/staff-03@2x.webp',
     description: '趣味：サップ、釣り。特技：書道、バスケットボール。',
   },
   {
@@ -37,6 +42,7 @@ export const STAFF: readonly StaffMember[] = [
     name: '高木 流星',
     kana: 'タカギ リュウセイ',
     image: '/design/staff/staff-04.png',
+    image2x: '/design/staff/staff-04@2x.webp',
     description: '趣味：食べること。特技：太ること。一言：こう見えても意外と車屋歴長いです！',
   },
   {
@@ -44,6 +50,7 @@ export const STAFF: readonly StaffMember[] = [
     name: '山田 零音',
     kana: 'ヤマダ レオト',
     image: '/design/staff/staff-05.png',
+    image2x: '/design/staff/staff-05@2x.webp',
     description: '趣味：サッカー、旅行、ゴルフ。特技：太らないこと。一言：なんでもご相談ください！',
   },
   {
@@ -51,6 +58,7 @@ export const STAFF: readonly StaffMember[] = [
     name: '松浦 加奈',
     kana: 'マツウラ カナ',
     image: '/design/staff/staff-06.png',
+    image2x: '/design/staff/staff-06@2x.webp',
     description: '趣味：モータースポーツ観戦、お酒、食べる事。一言：お客様のカーライフ全般サポート致します！ 最後にこの方お願いします！！',
   },
 ];

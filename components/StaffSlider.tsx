@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
 import styles from './StaffSlider.module.css';
-import { BODY_W, STAFF_STAGE as S } from '@/data/lp1Layout';
+import { BODY_W, IMG_SIZES, STAFF_STAGE as S, srcSet2x } from '@/data/lp1Layout';
 import { STAFF, STAFF_CARD_SIZE } from '@/data/staff';
 
 const N = STAFF.length;
@@ -11,6 +11,9 @@ const N = STAFF.length;
 const COPIES = 3;
 const CARD_W = STAFF_CARD_SIZE.width * S.cardScale;
 const CARD_H = STAFF_CARD_SIZE.height * S.cardScale;
+
+// Rendered card width: 382.4 of 509 design px.
+const CARD_SIZES = `(min-width: ${BODY_W}px) ${Math.ceil(CARD_W)}px, ${((CARD_W / BODY_W) * 100).toFixed(2)}vw`;
 
 const mod = (n: number, m: number) => ((n % m) + m) % m;
 const useIsoLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
@@ -143,7 +146,7 @@ export default function StaffSlider() {
 
   return (
     <section className={styles.stage} style={stageVars} aria-roledescription="carousel" aria-label="スタッフ紹介">
-      <img className={styles.layer} src="/design/staff-stage-bg.png" width={509} height={660} alt="" aria-hidden="true" draggable={false} />
+      <img className={styles.layer} src="/design/staff-stage-bg.png" srcSet={srcSet2x('/design/staff-stage-bg.png', '/design/staff-stage-bg@2x.png', 509)} sizes={IMG_SIZES} width={509} height={660} alt="" aria-hidden="true" draggable={false} />
       <div
         ref={scroller}
         className={styles.scroller}
@@ -172,6 +175,8 @@ export default function StaffSlider() {
                 >
                   <img
                     src={m.image}
+                    srcSet={srcSet2x(m.image, m.image2x, STAFF_CARD_SIZE.width)}
+                    sizes={CARD_SIZES}
                     width={STAFF_CARD_SIZE.width}
                     height={STAFF_CARD_SIZE.height}
                     alt={live ? `${m.name}（${m.kana}）。${m.description}` : ''}
@@ -184,7 +189,7 @@ export default function StaffSlider() {
           )}
         </div>
       </div>
-      <img className={styles.overlay} src="/design/staff-stage-overlay.png" width={509} height={660} alt="" aria-hidden="true" draggable={false} />
+      <img className={styles.overlay} src="/design/staff-stage-overlay.png" srcSet={srcSet2x('/design/staff-stage-overlay.png', '/design/staff-stage-overlay@2x.png', 509)} sizes={IMG_SIZES} width={509} height={660} alt="" aria-hidden="true" draggable={false} />
       <div className={styles.dots} role="group" aria-label="表示するスタッフを選択">
         {STAFF.map((m, i) => (
           <button

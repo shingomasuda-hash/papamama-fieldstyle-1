@@ -31,11 +31,16 @@ async function open(width, query = '', touch = false) {
   const ctx = await browser.newContext({ viewport: { width, height: 900 }, deviceScaleFactor: 1, hasTouch: touch, isMobile: touch });
   const page = await ctx.newPage();
   await page.goto(`${BASE}/${query}`, { waitUntil: 'load' });
-  // Lazy images that are off-screen never resolve decode(), so skip them and cap the wait.
+  // Load lazy images (body tiles, off-screen cards) so full-page screenshots are complete.
   await page.evaluate(() =>
     Promise.race([
-      Promise.all([...document.images].filter((i) => i.loading !== 'lazy').map((i) => i.decode().catch(() => {}))),
-      new Promise((r) => setTimeout(r, 5000)),
+      Promise.all(
+        [...document.images].map((i) => {
+          i.loading = 'eager';
+          return i.decode().catch(() => {});
+        }),
+      ),
+      new Promise((r) => setTimeout(r, 15000)),
     ]),
   );
   await page.waitForTimeout(300);
@@ -213,6 +218,24 @@ const settle = (page) => page.waitForTimeout(900);
   }
   report.slider.mouse = drags;
   if (drags.map((d) => d.visible).join() !== '2,3,2') fail(`mouse drag ${drags.map((d) => d.visible)}`);
+  await ctx.close();
+}
+
+// ---- High-density screens get the @2x assets; DPR 1 keeps the originals ------------
+for (const dpr of [1, 3]) {
+  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: dpr });
+  const page = await ctx.newPage();
+  await page.goto(`${BASE}/`, { waitUntil: 'load' });
+  const srcs = await page.evaluate(async () => {
+    const imgs = [...document.querySelectorAll('main img')];
+    imgs.forEach((i) => (i.loading = 'eager'));
+    await Promise.all(imgs.map((i) => i.decode().catch(() => {})));
+    return { hidpi: imgs.some((i) => i.srcset), list: imgs.map((i) => i.currentSrc.replace(location.origin, '')) };
+  }).then((r) => ((report.hidpiEnabled = r.hidpi), r.list));
+  const hd = srcs.filter((s) => s.includes('@2x'));
+  report.slider[`dpr${dpr}`] = { total: srcs.length, hd: hd.length, sample: srcs.slice(0, 3) };
+  if (dpr === 1 && hd.length) fail(`DPR1 loaded @2x assets: ${hd.slice(0, 3)}`);
+  if (dpr === 3 && report.hidpiEnabled && hd.length !== srcs.length) fail(`DPR3 missing @2x: ${srcs.filter((s) => !s.includes('@2x')).slice(0, 5)}`);
   await ctx.close();
 }
 

@@ -1,6 +1,6 @@
 import StaffSlider from './StaffSlider';
 import styles from './Lp1Page.module.css';
-import { BODY_H, BODY_W, FV_IMAGES, HOTSPOTS, STAFF_STAGE, pct, type FvKey, type Hotspot } from '@/data/lp1Layout';
+import { BODY_H, BODY_TILES, BODY_W, FV_IMAGES, HOTSPOTS, IMG_SIZES, STAFF_STAGE, pct, srcSet2x, type FvKey, type Hotspot } from '@/data/lp1Layout';
 
 const FV_ALT =
   "PAPAMAMA CAR'S あなただけの一台で、遊びをもっと自由に。日本最大級の遊びの祭典 FIELDSTYLE OUTDOOR & LIFESTYLE FESTA 出店決定！ 2026年11月14日（土）〜11月15日（日） 愛知県国際展示場";
@@ -30,6 +30,8 @@ export default function Lp1Page({ fv }: { fv: FvKey }) {
       <img
         className={styles.fv}
         src={fvImage.src}
+        srcSet={srcSet2x(fvImage.src, fvImage.src2x, fvImage.width)}
+        sizes={IMG_SIZES}
         width={fvImage.width}
         height={fvImage.height}
         alt={FV_ALT}
@@ -37,7 +39,20 @@ export default function Lp1Page({ fv }: { fv: FvKey }) {
         data-fv={fv}
       />
       <div className={styles.body}>
-        <img className={styles.bodyImg} src="/design/lp1-body.png" width={BODY_W} height={BODY_H} alt="" decoding="async" />
+        {BODY_TILES.map((t, i) => (
+          <img
+            key={t.src}
+            className={styles.bodyImg}
+            src={t.src}
+            srcSet={srcSet2x(t.src, t.src2x, BODY_W)}
+            sizes={IMG_SIZES}
+            width={BODY_W}
+            height={t.height}
+            alt=""
+            loading={i < 2 ? 'eager' : 'lazy'}
+            decoding="async"
+          />
+        ))}
         <div className="sr-only">
           <p>あなたの理想の一台を、あなたらしいスタイルで。FIELDSTYLE出店決定！家族で楽しめる塗装体験イベントも開催！愛車の相談OK、下取り査定もOK。相談予約で入場チケット無料プレゼント。</p>
           <p>開催日：2026年11月14日（土）〜15日（日） 09:00〜17:00（ブースOPEN）。会場：AICHI SKY EXPO 愛知国際展示場（〒479-0881 愛知県常滑市セントレア5丁目）。</p>
