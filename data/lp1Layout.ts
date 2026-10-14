@@ -15,13 +15,22 @@ export const IMG_SIZES = '(min-width: 509px) 509px, 100vw';
 export const HIDPI = true;
 
 /** srcset for a 1x/@2x pair, or undefined while HIDPI is off (1x only). */
-export const srcSet2x = (src: string, src2x: string, width: number) =>
-  HIDPI ? `${src} ${width}w, ${src2x} ${width * 2}w` : undefined;
+export const srcSet2x = (src: string, src2x: string | null, width: number) =>
+  HIDPI && src2x ? `${src} ${width}w, ${src2x} ${width * 2}w` : undefined;
 
-export const FV_IMAGES = {
-  '1': { src: '/design/lp1-fv-1.jpg', src2x: '/design/lp1-fv-1@2x.jpg', width: 590, height: 1335 },
-  '2': { src: '/design/lp1-fv-2.jpg', src2x: '/design/lp1-fv-2@2x.jpg', width: 573, height: 1298 },
-} as const;
+const FV_ALT = "PAPAMAMA CAR'S あなただけの一台で、遊びは、もっと自由になる。日本最大級の遊びの祭典 FIELDSTYLE OUTDOOR & LIFESTYLE FESTA 出店決定！ 2026年11月14日（土）〜11月15日（日）";
+
+// src2x: null while the @2x upscale of a newly swapped FV is not generated yet (1x only).
+export const FV_IMAGES: Record<'1' | '2', { src: string; src2x: string | null; width: number; height: number; alt: string }> = {
+  '1': {
+    src: '/design/lp1-fv-1.jpg',
+    src2x: null,
+    width: 522,
+    height: 1952,
+    alt: `${FV_ALT} 予約者全員にプレゼント！ PRESENT 01：FIELDSTYLE入場チケット。PRESENT 02：会場内で使える食事券3000円分。`,
+  },
+  '2': { src: '/design/lp1-fv-2.jpg', src2x: '/design/lp1-fv-2@2x.jpg', width: 573, height: 1298, alt: FV_ALT },
+};
 
 /** lp1-body.png split into 1024-row tiles (12 × 1024 + 848 = 13136). */
 const TILE_H = 1024;

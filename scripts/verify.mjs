@@ -230,12 +230,18 @@ for (const dpr of [1, 3]) {
     const imgs = [...document.querySelectorAll('main img')];
     imgs.forEach((i) => (i.loading = 'eager'));
     await Promise.all(imgs.map((i) => i.decode().catch(() => {})));
-    return { hidpi: imgs.some((i) => i.srcset), list: imgs.map((i) => i.currentSrc.replace(location.origin, '')) };
-  }).then((r) => ((report.hidpiEnabled = r.hidpi), r.list));
+    return {
+      hidpi: imgs.some((i) => i.srcset),
+      list: imgs.map((i) => i.currentSrc.replace(location.origin, '')),
+      // images that offer an @2x candidate but did not get it
+      missed: imgs.filter((i) => i.srcset && !i.currentSrc.includes('@2x')).map((i) => i.currentSrc.split('/').pop()),
+      noSrcset: imgs.filter((i) => !i.srcset).map((i) => i.currentSrc.split('/').pop()),
+    };
+  }).then((r) => ((report.hidpiEnabled = r.hidpi), (report[`dpr${dpr}Missed`] = r.missed), (report.noSrcset = r.noSrcset), r.list));
   const hd = srcs.filter((s) => s.includes('@2x'));
   report.slider[`dpr${dpr}`] = { total: srcs.length, hd: hd.length, sample: srcs.slice(0, 3) };
   if (dpr === 1 && hd.length) fail(`DPR1 loaded @2x assets: ${hd.slice(0, 3)}`);
-  if (dpr === 3 && report.hidpiEnabled && hd.length !== srcs.length) fail(`DPR3 missing @2x: ${srcs.filter((s) => !s.includes('@2x')).slice(0, 5)}`);
+  if (dpr === 3 && report.hidpiEnabled && report.dpr3Missed.length) fail(`DPR3 missing @2x: ${report.dpr3Missed.slice(0, 5)}`);
   await ctx.close();
 }
 

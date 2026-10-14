@@ -1,5 +1,7 @@
 # LP1 QA report
 
+> **2026-10-14 FV1 swap.** `lp1-fv-1.jpg` ← `FIELDSTYLE_FV_LP1-1-1.jpg` (522×1952, byte-for-byte), which adds the 予約者全員にプレゼント block. FV2 is unchanged. All functional checks pass. FV1 vs source at 509px: mean 1.93 (resampling only). Body at 509px is still pixel-identical, and FV1/FV2 bodies are identical. FV1 is served 1x-only until its @2x upscale is added; the other 33 images are @2x on DPR 3. The source again has a 1px light bottom row, kept as-is.
+
 > **High-DPI (@2x) enabled.** Every image now has a Real-ESRGAN x2plus @2x version chosen by `srcset`.
 > - **DPR 1:** loads 0 @2x files (34/34 originals), so the pixel results below are unchanged.
 > - **DPR 3** (390px viewport): loads 34/34 @2x files.

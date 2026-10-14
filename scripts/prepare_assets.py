@@ -4,8 +4,8 @@ Usage: python3 -I scripts/prepare_assets.py <source_dir> <repo_root>
 
 <source_dir> must contain the files downloaded from the FIELDSTYLE Google Drive folder:
   FIELDSTYLE_LP1_2026.jpg      509x14254 full LP1 design
-  FIELDSTYLE_FV_LP2-1.jpg      FV1 (main)      — file name as placed in Drive LP1/ (2026-10-13 swap)
-  7 1FIELDSTYLE_FV_LP2-2.jpg   FV2 (alternate) — idem
+  FIELDSTYLE_FV_LP1-1-1.jpg    FV1 (main, 522x1952, 2026-10-14)
+  FIELDSTYLE_FV_LP1-2.jpg      FV2 (alternate, 573x1298; same file as the earlier "7 1FIELDSTYLE_FV_LP2-2.jpg")
   FIELDSTYLE_LP1-LP2共通        3830x816 RGBA staff strip (PNG)
 
 FV/full JPEGs are copied byte-for-byte. Everything else is cropped from decoded
@@ -38,8 +38,8 @@ STAGE_Y0, STAGE_Y1 = 9180, 9840  # rows replaced by the live slider layers
 DOT_Y = 9793.8
 DOT_XS = [193.16, 224.5, 255.61, 286.84, 318.0]
 
-shutil.copyfile(SRC / "FIELDSTYLE_FV_LP2-1.jpg", DESIGN / "lp1-fv-1.jpg")
-shutil.copyfile(SRC / "7 1FIELDSTYLE_FV_LP2-2.jpg", DESIGN / "lp1-fv-2.jpg")
+shutil.copyfile(SRC / "FIELDSTYLE_FV_LP1-1-1.jpg", DESIGN / "lp1-fv-1.jpg")
+shutil.copyfile(SRC / "FIELDSTYLE_FV_LP1-2.jpg", DESIGN / "lp1-fv-2.jpg")
 shutil.copyfile(SRC / "FIELDSTYLE_LP1_2026.jpg", ROOT / "reference" / "lp1-full.jpg")
 
 full = Image.open(SRC / "FIELDSTYLE_LP1_2026.jpg").convert("RGB")
