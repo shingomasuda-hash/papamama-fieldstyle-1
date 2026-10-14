@@ -38,7 +38,9 @@ STAGE_Y0, STAGE_Y1 = 9180, 9840  # rows replaced by the live slider layers
 DOT_Y = 9793.8
 DOT_XS = [193.16, 224.5, 255.61, 286.84, 318.0]
 
-shutil.copyfile(SRC / "FIELDSTYLE_FV_LP1-1-1.jpg", DESIGN / "lp1-fv-1.jpg")
+shutil.copyfile(SRC / "FIELDSTYLE_FV_LP1-1-1.jpg", ROOT / "reference" / "lp1-fv-1-original.jpg")
+# FV1 is edited (smaller present block, tighter gaps): run scripts/edit_fv1_present.py
+#   reference/lp1-fv-1-original.jpg -> public/design/lp1-fv-1.jpg
 shutil.copyfile(SRC / "FIELDSTYLE_FV_LP1-2.jpg", DESIGN / "lp1-fv-2.jpg")
 shutil.copyfile(SRC / "FIELDSTYLE_LP1_2026.jpg", ROOT / "reference" / "lp1-full.jpg")
 

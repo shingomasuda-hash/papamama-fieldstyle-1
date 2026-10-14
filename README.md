@@ -32,7 +32,7 @@ Every asset comes from the client's Google Drive folder `FIELDSTYLE` (`LP1/` and
 
 | File | Source | Processing |
 | --- | --- | --- |
-| `lp1-fv-1.jpg` (522×1952) | `LP1/FIELDSTYLE_FV_LP1-1-1.jpg` (2026-10-14; adds the 予約者全員にプレゼント block) | byte-for-byte copy |
+| `lp1-fv-1.jpg` (522×1700) | `LP1/FIELDSTYLE_FV_LP1-1-1.jpg` (2026-10-14; original kept as `reference/lp1-fv-1-original.jpg`) | **edited on request** by `scripts/edit_fv1_present.py`: the 予約者全員にプレゼント block is scaled to 80% and centred; the gaps go from 86/125px to 40/44px. The background around it is rebuilt from the original's own gradient and paper texture. Rows above the block are unchanged. |
 | `lp1-fv-2.jpg` (573×1298) | `LP1/FIELDSTYLE_FV_LP1-2.jpg` (renamed in Drive; formerly `7 1FIELDSTYLE_FV_LP2-2.jpg`) | byte-for-byte copy |
 | `lp1-body.png` (509×13136) | `LP1/FIELDSTYLE_LP1_2026.jpg` rows y ≥ 1118 | lossless crop (decoded pixels → PNG) |
 | `staff-all.png` (3830×816) | `FIELDSTYLE_LP1-LP2共通` | byte-for-byte copy |
@@ -55,7 +55,7 @@ The supplied designs are only 509–590px wide, so phones (DPR 2–3) had to str
 
 | | 1x (DPR 1 desktops) | @2x (phones, retina) |
 | --- | --- | --- |
-| FV | `lp1-fv-{1,2}.jpg` (original) | `lp1-fv-{1,2}@2x.jpg` 1044/1146px |
+| FV | `lp1-fv-{1,2}.jpg` (original) | `lp1-fv-{1,2}@2x.jpg` 1044/1146px (FV1 @2x = `edit_fv1_present.py --k 2` on the upscaled original) |
 | Body | `body/lp1-body-01..13.png` (lossless 1024-row tiles of `lp1-body.png`) | `body/lp1-body-01..13@2x.jpg` 1018×2048 |
 | Staff cards | `staff/staff-0N.png` (original) | `staff/staff-0N@2x.webp` 1172×1632 |
 | STAFF stage layers | `staff-stage-{bg,overlay}.png` | `staff-stage-{bg,overlay}@2x.png` |

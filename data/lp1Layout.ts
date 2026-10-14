@@ -24,9 +24,9 @@ const FV_ALT = "PAPAMAMA CAR'S あなただけの一台で、遊びは、もっ�
 export const FV_IMAGES: Record<'1' | '2', { src: string; src2x: string | null; width: number; height: number; alt: string }> = {
   '1': {
     src: '/design/lp1-fv-1.jpg',
-    src2x: null,
+    src2x: '/design/lp1-fv-1@2x.jpg',
     width: 522,
-    height: 1952,
+    height: 1700, // present block shrunk to 80% + tighter gaps (scripts/edit_fv1_present.py)
     alt: `${FV_ALT} 予約者全員にプレゼント！ PRESENT 01：FIELDSTYLE入場チケット。PRESENT 02：会場内で使える食事券3000円分。`,
   },
   '2': { src: '/design/lp1-fv-2.jpg', src2x: '/design/lp1-fv-2@2x.jpg', width: 573, height: 1298, alt: FV_ALT },

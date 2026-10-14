@@ -32,8 +32,8 @@ def load(name, size):
     return im
 
 
-# FV
-for n, size in (("1", (522, 1952)), ("2", (573, 1298))):
+# FV (FV1's @2x is made by scripts/edit_fv1_present.py --k 2 from the upscaled original)
+for n, size in (("2", (573, 1298)),):
     load(f"lp1-fv-{n}@2x.png", (size[0] * 2, size[1] * 2)).convert("RGB").save(D / f"lp1-fv-{n}@2x.jpg", **JPEG)
 
 # Body tiles (1x lossless crops of lp1-body.png + @2x JPEG)

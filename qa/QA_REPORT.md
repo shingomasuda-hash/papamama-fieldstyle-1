@@ -1,5 +1,14 @@
 # LP1 QA report
 
+> **2026-10-14 FV1 present block resized (on request).** `lp1-fv-1.jpg` is now 522×1700, made by `scripts/edit_fv1_present.py` from `reference/lp1-fv-1-original.jpg`.
+> - **Block:** gift / ribbon / PRESENT cards scaled to 80% and centred.
+> - **Gaps:** date→block 86→40px, block→FV bottom 125→44px.
+> - **Background:** rebuilt from the original's own gradient and paper texture. Rows above the block are unchanged apart from JPEG re-encoding (mean 1.05/255).
+> - **@2x:** the same edit applied to the upscaled original (1044×3400, exactly 2×).
+> - **Bug fixed during review:** a dark blotch in the @2x background next to card 01. The gradient estimate is now computed at 1x for both versions.
+> - **QA:** all functional checks pass; DPR 3 loads 34/34 @2x; at 509px the body is still pixel-identical and identical between FV1 and FV2.
+> - **Body untouched:** the yellow band above the body's top buttons (100px, part of the original body design) is unchanged.
+
 > **2026-10-14 FV1 swap.** `lp1-fv-1.jpg` ← `FIELDSTYLE_FV_LP1-1-1.jpg` (522×1952, byte-for-byte), which adds the 予約者全員にプレゼント block. FV2 is unchanged. All functional checks pass. FV1 vs source at 509px: mean 1.93 (resampling only). Body at 509px is still pixel-identical, and FV1/FV2 bodies are identical. FV1 is served 1x-only until its @2x upscale is added; the other 33 images are @2x on DPR 3. The source again has a 1px light bottom row, kept as-is.
 
 > **High-DPI (@2x) enabled.** Every image now has a Real-ESRGAN x2plus @2x version chosen by `srcset`.
