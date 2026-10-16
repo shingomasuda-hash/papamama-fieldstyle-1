@@ -16,7 +16,8 @@ const EXPECTED = {
   'paint-line': 'https://s.lmes.jp/landing-qr/2007227107-GgA3P6zw?uLand=WvWa0c',
   'footer-consultation': 'https://s.lmes.jp/landing-qr/2007227107-GgA3P6zw?uLand=hxg1Jo',
   'footer-paint': 'https://s.lmes.jp/landing-qr/2007227107-GgA3P6zw?uLand=WvWa0c',
-  'footer-instagram': 'https://s.lmes.jp/landing-qr/2007227107-GgA3P6zw?uLand=pxS26L',
+  'footer-instagram': 'https://www.instagram.com/papamamacars/',
+  'footer-facebook': 'https://www.facebook.com/papamamacars/?locale=ja_JP',
 };
 
 const exe = process.env.CHROMIUM_PATH ?? '/opt/pw-browsers/chromium';

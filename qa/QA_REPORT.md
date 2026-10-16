@@ -1,5 +1,10 @@
 # LP1 QA report
 
+> **2026-10-16 SNS links (on request).** Both open in a new tab (`rel="noopener noreferrer"`). All checks pass with 9 hotspots at 509/390/375 px, FV1 and FV2: exact `href`, and each is the top element at its centre.
+> - **Instagram icon:** now links to https://www.instagram.com/papamamacars/ (previously the LMES link `…uLand=pxS26L`).
+> - **Facebook icon:** new hotspot to https://www.facebook.com/papamamacars/?locale=ja_JP, placed over the drawn icon (body rect 218,12970,76,76).
+> - **LINE icon:** still unlinked, because no destination was supplied.
+
 > **2026-10-14 FV1 present block resized (on request).** `lp1-fv-1.jpg` is now 522×1700, made by `scripts/edit_fv1_present.py` from `reference/lp1-fv-1-original.jpg`.
 > - **Block:** gift / ribbon / PRESENT cards scaled to 80% and centred.
 > - **Gaps:** date→block 86→40px, block→FV bottom 125→44px.

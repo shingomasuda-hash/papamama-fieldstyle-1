@@ -10,6 +10,8 @@ function HotspotLink({ spot }: { spot: Hotspot }) {
       href={spot.href}
       aria-label={spot.label}
       data-cta={spot.id}
+      target={spot.external ? '_blank' : undefined}
+      rel={spot.external ? 'noopener noreferrer' : undefined}
       style={{ left: pct(x, BODY_W), top: pct(y, BODY_H), width: pct(w, BODY_W), height: pct(h, BODY_H) }}
     />
   );

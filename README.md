@@ -96,13 +96,13 @@ The rectangles below are in `lp1-body.png` pixels (full-design y − 1118) and i
 | `paint-line` | LINEから予約 (塗装概要 section) | `PAINT_URL` ※ |
 | `footer-consultation` | 相談予約 (footer) | `CONSULTATION_URL` |
 | `footer-paint` | 塗装体験予約 (footer) | `PAINT_URL` |
-| `footer-instagram` | Instagram icon (Follow Us) | `INSTAGRAM_URL` |
+| `footer-instagram` | Instagram icon (Follow Us) | `INSTAGRAM_URL` = https://www.instagram.com/papamamacars/ (new tab) |
+| `footer-facebook` | Facebook icon (Follow Us) | `FACEBOOK_URL` = https://www.facebook.com/papamamacars/?locale=ja_JP (new tab) |
 
 ※ The 「LINEから予約」 button sits directly under 塗装概要 (inside the painting-experience section), so it is mapped to `PAINT_URL`. If it should go to the consultation booking instead, change `href` of `paint-line` in `data/lp1Layout.ts`.
 
 ### Links not set (left unlinked on purpose)
 
-- **Facebook icon** (Follow Us): no destination was supplied. It's left as a plain image, and no URL was invented.
 - **LINE icon** (Follow Us): no destination was supplied, so it's left unlinked.
 
 ## STAFF carousel (`components/StaffSlider.tsx`, `data/staff.ts`)

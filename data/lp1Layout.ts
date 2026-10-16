@@ -1,4 +1,4 @@
-import { CONSULTATION_URL, INSTAGRAM_URL, PAINT_URL } from './links';
+import { CONSULTATION_URL, FACEBOOK_URL, INSTAGRAM_URL, PAINT_URL } from './links';
 
 /** Native size of /design/lp1-body.png (full design rows y >= 1118). */
 export const BODY_W = 509;
@@ -55,6 +55,8 @@ export type Hotspot = {
   label: string;
   /** x, y, w, h in lp1-body.png pixels (button incl. its drop shadow). */
   rect: readonly [number, number, number, number];
+  /** Open in a new tab (SNS profiles), so the LP stays open. */
+  external?: boolean;
 };
 
 // Rectangles detected from the button colours in the design and verified visually.
@@ -66,7 +68,8 @@ export const HOTSPOTS: readonly Hotspot[] = [
   { id: 'paint-line', href: PAINT_URL, label: 'LINEから予約（塗装体験予約）', rect: [42, 5281, 432, 55] },
   { id: 'footer-consultation', href: CONSULTATION_URL, label: '相談予約', rect: [42, 12150, 202, 55] },
   { id: 'footer-paint', href: PAINT_URL, label: '塗装体験予約', rect: [272, 12150, 202, 56] },
-  { id: 'footer-instagram', href: INSTAGRAM_URL, label: 'Instagram', rect: [109, 12970, 76, 76] },
+  { id: 'footer-instagram', href: INSTAGRAM_URL, label: 'Instagram（新しいタブで開きます）', rect: [109, 12970, 76, 76], external: true },
+  { id: 'footer-facebook', href: FACEBOOK_URL, label: 'Facebook（新しいタブで開きます）', rect: [218, 12970, 76, 76], external: true },
 ];
 
 /**
