@@ -34,6 +34,7 @@ Every asset comes from the client's Google Drive folder `FIELDSTYLE` (`LP1/` and
 | --- | --- | --- |
 | `lp1-fv-1.jpg` (522×1700) | `LP1/FIELDSTYLE_FV_LP1-1-1.jpg` (2026-10-14; original kept as `reference/lp1-fv-1-original.jpg`) | **edited on request** by `scripts/edit_fv1_present.py`: the 予約者全員にプレゼント block is scaled to 80% and centred; the gaps go from 86/125px to 40/44px. The background around it is rebuilt from the original's own gradient and paper texture. Rows above the block are unchanged. |
 | `lp1-fv-2.jpg` (573×1298) | `LP1/FIELDSTYLE_FV_LP1-2.jpg` (renamed in Drive; formerly `7 1FIELDSTYLE_FV_LP2-2.jpg`) | byte-for-byte copy |
+| `lp1-fv-3.jpg` (522×1700) | `LP1/FIELDSTYLE_FV_LP1-2-1.jpg` (original kept as `reference/lp1-fv-3-original.jpg`) | LP1-1's FV. Same edit as FV1: `scripts/edit_fv1_present.py` (and `--k 2` on the upscaled original for @2x). |
 | `lp1-body.png` (509×13136) | `LP1/FIELDSTYLE_LP1_2026.jpg` rows y ≥ 1118 | lossless crop (decoded pixels → PNG) |
 | `staff-all.png` (3830×816) | `FIELDSTYLE_LP1-LP2共通` | byte-for-byte copy |
 | `staff/staff-01..06.png` (586×816) | cut from `staff-all.png` at x = 0, 644, 1294, 1944, 2594, 3244 | lossless crop |

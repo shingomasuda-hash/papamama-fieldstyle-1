@@ -21,7 +21,7 @@ export const srcSet2x = (src: string, src2x: string | null, width: number) =>
 const FV_ALT = "PAPAMAMA CAR'S あなただけの一台で、遊びは、もっと自由になる。日本最大級の遊びの祭典 FIELDSTYLE OUTDOOR & LIFESTYLE FESTA 出店決定！ 2026年11月14日（土）〜11月15日（日）";
 
 // src2x: null while the @2x upscale of a newly swapped FV is not generated yet (1x only).
-export const FV_IMAGES: Record<'1' | '2', { src: string; src2x: string | null; width: number; height: number; alt: string }> = {
+export const FV_IMAGES: Record<'1' | '2' | '3', { src: string; src2x: string | null; width: number; height: number; alt: string }> = {
   '1': {
     src: '/design/lp1-fv-1.jpg',
     src2x: '/design/lp1-fv-1@2x.jpg',
@@ -30,6 +30,14 @@ export const FV_IMAGES: Record<'1' | '2', { src: string; src2x: string | null; w
     alt: `${FV_ALT} 予約者全員にプレゼント！ PRESENT 01：FIELDSTYLE入場チケット。PRESENT 02：会場内で使える食事券3000円分。`,
   },
   '2': { src: '/design/lp1-fv-2.jpg', src2x: '/design/lp1-fv-2@2x.jpg', width: 573, height: 1298, alt: FV_ALT },
+  // LP1-1: FIELDSTYLE_FV_LP1-2-1.jpg with the same present-block edit as FV1.
+  '3': {
+    src: '/design/lp1-fv-3.jpg',
+    src2x: '/design/lp1-fv-3@2x.jpg',
+    width: 522,
+    height: 1700,
+    alt: `${FV_ALT} 予約者全員にプレゼント！ PRESENT 01：FIELDSTYLE入場チケット。PRESENT 02：会場内で使える食事券3000円分。`,
+  },
 };
 
 /** lp1-body.png split into 1024-row tiles (12 × 1024 + 848 = 13136). */
@@ -46,7 +54,7 @@ export type FvKey = keyof typeof FV_IMAGES;
 
 export function resolveFv(value: string | string[] | undefined): FvKey {
   const v = Array.isArray(value) ? value[0] : value;
-  return v === '2' ? '2' : '1';
+  return v === '2' || v === '3' ? v : '1';
 }
 
 export type Hotspot = {
